@@ -1,6 +1,6 @@
-setwd("C:\\Users\\VNOB-0958\\Documents\\code")
+setwd("C:\\Users\\VNOB-0958\\Documents\\GitHub\\PhD-Research\\simulate data")
 
-DF <- read.csv("DF_N=9402_2022-12-27.csv")
+DF <- read.csv("DF_N=47075_2022-12-28.csv")
 DF <- DF[!duplicated(DF),] # remove duplicates
 DF <- na.omit(DF)
 head(DF)
