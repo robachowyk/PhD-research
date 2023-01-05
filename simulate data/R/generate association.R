@@ -1,14 +1,16 @@
 
-name_DF <- "DF_N=76_2023-01-04.csv"
+name_DF <- "DF_N=44138_2023-01-05.csv"
 DF <- read.csv(file.path("..", "datasets", name_DF))
 DF <- DF[!duplicated(DF),] # remove duplicates
-DF <- na.omit(DF)
-head(DF)
+DF <- DF[DF$name!="",]
+DF <- DF[DF$family.name!="",]
+DF <- DF[DF$gender!="",]
+DF <- DF[DF$country!="",]
+DF <- DF[DF$birth.year!="",]
 
 # install.packages("reticulate")
 library(reticulate)
 Sys.which('python')
-py_available()
 py_install("pandas") # say no to miniconda
 use_virtualenv("r-reticulate")
 source_python("pickle_reader.py")
