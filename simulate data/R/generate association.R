@@ -1,9 +1,18 @@
-setwd("C:\\Users\\VNOB-0958\\Documents\\GitHub\\PhD-Research\\simulate data")
 
-DF <- read.csv("DF_N=47075_2022-12-28.csv")
+name_DF <- "DF_N=76_2023-01-04.csv"
+DF <- read.csv(file.path("..", "datasets", name_DF))
 DF <- DF[!duplicated(DF),] # remove duplicates
 DF <- na.omit(DF)
 head(DF)
+
+# install.packages("reticulate")
+library(reticulate)
+Sys.which('python')
+py_available()
+py_install("pandas") # say no to miniconda
+use_virtualenv("r-reticulate")
+source_python("pickle_reader.py")
+country_proba_names <- read_pickle_file(file.path("..", "dictionaries", "country_proba_names_75names.pkl"))
 
 # generate treatment:
 DF$treatment <- rbinom(nrow(DF),1,0.4)
@@ -35,4 +44,6 @@ d <- sample.int(10,1)/10
 
 DF$Y <- - 10 + a*DF$treatment*DF$X1 + b*log(DF$X4) + c*DF$X3*DF$X2 + d*DF$X5
 
-write.csv(DF, sprintf("DF_associations_N=%s_%s.csv", nrow(DF), Sys.Date()))
+head(DF)
+
+write.csv(DF, file.path("..", "datasets", sprintf("DF_associations_N=%s_%s.csv", nrow(DF), Sys.Date())))
