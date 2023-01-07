@@ -46,7 +46,3 @@ In python and R, see:
     └── R
         └── ETSR.R
 ```
-
-blablabla
-
-donc je rajoute une phrase
