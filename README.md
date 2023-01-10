@@ -37,8 +37,9 @@ In python and R, see:
 
 - A modified **Minimum Estimated Variance algorithm** developed in [Simultaneous record linkage and causal inference with propensity score subclassification](https://onlinelibrary.wiley.com/doi/10.1002/sim.7911)
 - 
-```
+
 In python and R, see:
+```
 .
 ├── replicate ETSR
     ├── python
