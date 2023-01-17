@@ -2,9 +2,9 @@
 
 ## Simulate data
 
-### Simulate identifiers (name, family name, country, gender, birth year)
+### Simulate identifiers (name, family name, country, sex, birth year)
 
-- Get names, family names from 32 European countries using [these datasets](https://github.com/philipperemy/name-dataset) (Facebook Data Leak, 2019)
+- Get names, family names, gender (that will be considered to be the sex at birth) from 32 European countries using [these datasets](https://github.com/philipperemy/name-dataset) (Facebook Data Leak, 2019)
 - Match countries 2 letters code based on [this dict](https://gist.github.com/mlisovyi/e8df5c907a8250e14cc1e5933ed53ffd)
 - Generate age distributions based on: [the World Bank](https://data.worldbank.org/) (helped with Chatgpt), [the World Health Organization](https://www.who.int/countries/) (helped with Chatgpt), [the World Factbook](https://www.cia.gov/the-world-factbook/countries/)
 - Use realistic population sizes from: [United Nations Department of Economic and Social Affairs](https://www.un.org/development/desa/pd/data-landing-page), [Eurostat](https://ec.europa.eu/eurostat/web/main/data/database) and [the World Bank](https://data.worldbank.org/) (helped with Chatgpt)
@@ -53,11 +53,7 @@ In python and R, see:
 
 The context studied in the [paper](https://onlinelibrary.wiley.com/doi/10.1002/sim.7911) is the one of an additive treatment effect (treatment effect is the same for all individuals).
 
-On ```python``` we can see the evolution of the estimated variance of the treatment effect trough the linked records sets (in decreasing links confidence order) and the evolution of the estimated average treatment effect.
-
-Solid blue lines represent the average evolution through the sets for 10 rounds (simulate data + apply MEV algorithm), surounding shaded areas represent the 95% confidence intervals (over the 10 rounds) through the sets of linked records. Solid orange line represents the tretment effect value we are trying to recover.
-
-See images:
+See images of simulations results (python):
 ```
 .
 └── images
@@ -68,7 +64,8 @@ See images:
         ├── ate
         └── variance
 ```
+We can see the evolution of the estimated variance of the treatment effect and the evolution of the estimated average treatment effect through the linked records sets. Linked records sets (on the x-axis) are in decreasing order of links confidence which means that the first set (0) relies almost only on true links and in other sets we add more and more recorded links (which are less and less true links).
 
-We first observe that the algorithm does not work in a non-fixed treatment effect setting (when treatment effect is different for each individual).
+Solid blue lines represent the average evolution through the sets for 10 rounds (of simulating data + applying MEV algorithm), surounding shaded areas represent the 95% confidence intervals (over the 10 rounds) through the sets of linked records. Solid orange line represents the treatment effect value we are trying to recover.
 
-We then notice an elbow on the variance plots that points out the best average treatment effect estimation, that we get for an early set (relying almost only on true links).
+We first observe that the algorithm works in a non-fixed treatment effect setting (when treatment effect is different for each individual) although the paper has been written in a fixed treatment effect context. We then notice an elbow on the variance plots (for both designs fixed and non-fixed treatment effect) that points out the best average treatment effect estimation, which we get for an early set (relying almost only on true links).
