@@ -12,8 +12,8 @@
 Only in python, see:
 ```
 .
-├── simulate data
-    ├── python
+└── simulate data
+    └── python
         └── generate identifiers.ipynb
 ```
 
@@ -26,7 +26,7 @@ Only in python, see:
 In python and R, see:
 ```
 .
-├── simulate data
+└── simulate data
     ├── python
     |   └── generate association.ipynb
     └── R
@@ -35,15 +35,38 @@ In python and R, see:
 
 ## Replicate **Estimate-Tethered Stopping Rule algorithm**
 
-- A modified **Minimum Estimated Variance algorithm** developed in [Simultaneous record linkage and causal inference with propensity score subclassification](https://onlinelibrary.wiley.com/doi/10.1002/sim.7911)
-- 
+- A **Minimum Estimated Variance algorithm** developed in [Simultaneous record linkage and causal inference with propensity score subclassification](https://onlinelibrary.wiley.com/doi/10.1002/sim.7911)
 
 In python and R, see:
 ```
 .
-├── replicate ETSR
+└── replicate MEV
     ├── python
-    |   └── ETSR.ipynb
+    |   └── launch MEV algo.ipynb
     └── R
-        └── ETSR.R
+        └── launch MEV algo.R
 ```
+
+## Results 
+
+The context studied in the [paper](https://onlinelibrary.wiley.com/doi/10.1002/sim.7911) is the one of an additive treatment effect (treatment effect is the same for all individuals).
+
+On ```python``` we can see the evolution of the estimated variance of the treatment effect trough the linked records sets (in decreasing links confidence order) and the evolution of the estimated average treatment effect.
+
+Solid blue lines represent the average evolution through the sets for 10 rounds (simulate data + apply MEV algorithm), surounding shaded areas represent the 95% confidence intervals (over the 10 rounds) through the sets of linked records. Solid orange line represents the tretment effect value we are trying to recover.
+
+See images:
+```
+.
+└── images
+    ├── fixed treatment effect
+    |   ├── ate
+    |   └── variance
+    └── non-fixed treatment effect
+        ├── ate
+        └── variance
+```
+
+We first observe that the algorithm does not work in a non-fixed treatment effect setting (when treatment effect is different for each individual).
+
+We then notice an elbow on the variance plots that points out the best average treatment effect estimation, that we get for an early set (relying almost only on true links).
