@@ -21,7 +21,9 @@ Only in python, see:
 
 - Generate covariates, (age + 4 gaussian variables with different parameters)
 - Generate treatment $T \sim Bernoulli(p=0.4)$
-- Generate outcome $Y = -10 + a T X_{1} + b \log(X_{4}) + c X_{2} X_{3} + d X_{5}$
+- Generate outcome (either fixed or non-fixed treatment effect over individuals)
+    - $Y = -10 + a T + b \exp(X_{4}) + c X_{3} X_{1} + d X_{5}$
+    - $Y = -10 + a T X_{2} + b \exp(X_{4}) + c X_{3} X_{1} + d X_{5}$
 
 In python and R, see:
 ```
