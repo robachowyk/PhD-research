@@ -9,7 +9,7 @@ DF <- DF[!duplicated(DF),] # remove duplicates
 # remove NaN values or empty elements:
 DF <- DF[DF$name!="",]
 DF <- DF[DF$family_name!="",]
-DF <- DF[DF$was_born_female!="",]
+DF <- DF[DF$was_assigned_female!="",]
 DF <- DF[DF$country!="",]
 DF <- DF[DF$birth_year!="",]
 DF <- na.omit(DF)
